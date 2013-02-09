@@ -1,15 +1,19 @@
-s = "<THU><Team><ACRush></ACRush></THU><Cooly><Amber></Amber></Cooly>"
+r = "<THU><Team><ACRush></ACRush></THU><Cooly><Amber></Amber></Cooly>"
 i = 0
-for ch in s:
-    i = s.index(ch)
+for ch in r:
+    i = r.index(ch)
     if ch == ">":
-        print( s[:i+1])
-        tag = s[:i+1]
+        tag = r[:i+1]
         break
-print(s)
+print(r)
 
 tag = tag[0]+"/"+tag[1:]
 
-index = s.rfind(tag) + len(tag)
+index = r.rfind(tag) + len(tag)
+
+tree = r[:index]
     
-print(s[index:])
+search = r[index:]
+
+
+return (tree,search)
