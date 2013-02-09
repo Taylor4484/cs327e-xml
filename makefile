@@ -3,7 +3,7 @@ all:
 	make test
 
 diff:
-	RunXML.py < RunXML.in > RunXML.tmp
+	./RunXML.py < RunXML.in > RunXML.tmp
 	diff RunXML.out RunXML.tmp
 	rm RunXML.tmp
 
