@@ -11,6 +11,19 @@ def xml_driver (r, w) :
     #returns (tree,search)
     tree, search = xml_tokenizer(r)
 
+    
+    tree = ET.fromstring(tree)
+    itr = tree.iter()
+
+    #print tree
+    ET.dump(tree)
+    
+    lst = []
+    for child in itr:
+        lst.append(child.tag)
+    print(lst)
+    
+
 # ------------
 # xml_tokenizer
 # ------------
@@ -25,7 +38,6 @@ def xml_tokenizer (s) :
             tag = r[:i+1]
             break
         
-    print(r)
 
     tag = tag[0]+"/"+tag[1:]
 

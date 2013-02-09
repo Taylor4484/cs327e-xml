@@ -16,7 +16,6 @@ print(lst)
 
 ET.dump(tree)
 
-
 """
 for child in itr:
     j = j+1
