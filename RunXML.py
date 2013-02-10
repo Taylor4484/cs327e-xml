@@ -11,15 +11,22 @@ def xml_driver (r, w) :
     #returns (tree,search)
     tree, search = xml_tokenizer(r)
 
-    
     tree = ET.fromstring(tree)
-    itr = tree.iter()
+    t_iter = tree.iter()
+
+    search = ET.fromstring(search)
+    s_iter = search.iter()
+    field = ""
+    for child in s_iter:
+        field = field + child.tag
+
+    print (field)
 
     #print tree
     ET.dump(tree)
     
     lst = []
-    for child in itr:
+    for child in t_iter:
         lst.append(child.tag)
     print(lst)
     
@@ -29,7 +36,8 @@ def xml_driver (r, w) :
 # ------------
 
 def xml_tokenizer (s) :
-    r = s.readline()
+    
+    r = s.read()
     i = 0
     tag = ""
     for ch in r:
@@ -90,4 +98,7 @@ import xml.etree.ElementTree as ET
 # main
 # ----
 
-xml_driver(sys.stdin, sys.stdout)
+file1 = open("RunXML.in", "r")
+file2 = open("RunXML.tmp", "w")
+
+xml_driver(file1, file2)

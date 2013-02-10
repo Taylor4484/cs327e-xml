@@ -16,4 +16,4 @@ tree = r[:index]
 search = r[index:]
 
 
-return (tree,search)
+print (tree,search)
