@@ -17,10 +17,9 @@ To test the program:
 # imports
 # -------
 
-import StringIO
 import unittest
 
-from Collatz import collatz_read, xml_driver, collatz_print, collatz_solve
+from RunXML import *
 
 # -----------
 # TestCollatz
@@ -31,10 +30,11 @@ from Collatz import collatz_read, xml_driver, collatz_print, collatz_solve
     # xml_driver
     # ----
 
-    def test_driver1 (self) :
-        v = xml_driver(1, 10)
-        self.assert_(v == 20)
-
+def test_driver1 (self) :
+    v = xml_driver(<Taylor><Team><ACRush></ACRush><Jelly></Jelly><Cooly></Cooly></Team><JiaJia><Team><Ahyangyi></Ahyangyi><Dragon></Dragon><Cooly><Amber></Amber></Cooly></Team></JiaJia></Taylor><Taylor><Team></Team></Taylor>, w)
+    print(v)
+    self.assert_(v == "1\n1")
+"""
     def test_driver2 (self) :
         v = xml_driver(100, 200)
         self.assert_(v == 125)
@@ -82,6 +82,8 @@ from Collatz import collatz_read, xml_driver, collatz_print, collatz_solve
         collatz_print(w, 900, 1000, 174)
         self.assert_(w.getvalue() == "900 1000 174\n")
 
+    def test_driver_1 (self) :
+        
 ##Caught 3rd instance
 
 <THU>
@@ -158,11 +160,11 @@ from Collatz import collatz_read, xml_driver, collatz_print, collatz_solve
         collatz_solve(r, w)
         self.assert_(w.getvalue() == "5881 2389 238\n9169 9347 260\n193 2702 209\n8515 190 262\n")
         
-
+"""
 # ----
 # main
 # ----
 
-print "TestCollatz.py"
+print ("TestXML.py")
 unittest.main()
-print "Done."
+print ("Done.")

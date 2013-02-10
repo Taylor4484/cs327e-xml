@@ -1,4 +1,4 @@
-<Taylor>
+<THU>
 	<Team>
 		<ACRush></ACRush>
 		<Jelly></Jelly>
@@ -10,6 +10,11 @@
 			<Dragon></Dragon>
 			<Cooly><Amber></Amber></Cooly>
 		</Team>
+		<Taylor>
+			<Team>
+				<Amber><Cooly></Cooly></Amber>
+			</Team>
+		</Taylor>
 	</JiaJia>
-</Taylor>
-<Taylor><Team></Team></Taylor>
+</THU>
+<Team><Cooly></Cooly></Team>

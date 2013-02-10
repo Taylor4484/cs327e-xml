@@ -35,7 +35,10 @@ def xml_driver (r, w) :
     match_parent = tree.findall(".//"+field[0])
     v = tree.find(".")
 
-    if(v == lst[0]):
+    print(v)
+    print(field)
+
+    if(v.tag == field[0]):
         match_parent.insert(0,v)
 
     found = []
