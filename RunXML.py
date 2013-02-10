@@ -4,50 +4,76 @@
 
 def xml_driver (r, w) :
     """
-    read, eval, print loop
+    takes in (head, sep, tail)
+    searches ElementTree for SearchQuery
+    Calls printer with answer string
     r is a reader
     w is a writer
     """
     #returns (tree,search)
-    tree, search = xml_tokenizer(r)
+    tree, sep, search = xml_tokenizer(r)
 
-    tree = ET.fromstring(tree)
+    #fix tree
+    tree = ET.fromstring(tree+sep)
     t_iter = tree.iter()
     
-#creates a list, field, of elements to be searched for
-    search = ET.fromstring(search)
-    s_iter = search.iter()
+    #creates a list, field, of elements to be searched for
+    s_iter = ET.fromstring(search).iter()
     field = []
     for child in s_iter:
         field.append(child.tag)
 
-#creates a list, lst, of memory addresses for the nodes of the tree    
+    #creates a list, lst, of memory addresses for the nodes of the tree    
     lst = []
     for child in t_iter:
         lst.append(child)
+    print(lst)
 
-#first match
+    #first match
+    
     match_parent = tree.findall(".//"+field[0])
+    v = tree.findall(".")
+    print (v)
+
+    if(v[0] == lst[0]):
+        match_parent.insert(0,v[0])
+    print(match_parent)
 
     found = []
-#    if(match_child != None): print( match_parent)
     i = 0
     for j in match_parent:
         match_child  = match_parent[i].find(".//"+field[1])
         if(match_child.tag == field[1]): found.append( match_parent[i])
         i += 1
-    answer = str(len(found)) + "\n"
-    for x in found:
-        answer += str((lst.index(x)+1))+"\n"
 
-    xml_print(w, answer[:-1])
+
+    #length of found list
+    length = len(found)
+    answer = str(length) + "\n"
+    
+    #match found element with indices
+    a = 0
+    for x in found:
+
+        answer += str((lst.index(x)+1))
+        if a != length:
+            answer += "\n"
+
+    return answer
 
 # ------------
 # xml_tokenizer
 # ------------
 
 def xml_tokenizer (s) :
+    """
+    splits input into two vaild xml trees
+       -ElementTree
+       -SearchQuery
     
+    returns (head, sep, tail)
+    """
+    #what is the opening tag?
     r = s.read()
     i = 0
     tag = ""
@@ -57,29 +83,11 @@ def xml_tokenizer (s) :
             tag = r[:i+1]
             break
         
-
-    tag = tag[0]+"/"+tag[1:]
-
+    tag = "</"+tag[1:]
     index = r.rfind(tag) + len(tag)
-
-    tree = r[:index]
-        
-    search = r[index:]
-
-
-    return (tree.strip(),search.strip())
-
-# ------------
-# xml_read
-# ------------
-
-def xml_read (r, a) :
-    """
-    reads two ints into a[0] and a[1]
-    r is a  reader
-    a is an array of int
-    return true if that succeeds, false otherwise
-"""
+    
+    #partition input on opening tag
+    return (r.partition(tag))
 
 
 
@@ -89,13 +97,14 @@ def xml_read (r, a) :
 
 def xml_print (w,s) :
     """
-    prints the values of i, j, and v
+    Output all the occurrences of pattern in a text of XML documents.
     w is a writer
+    s is the answer string
 
     """
     
     w.write(s)
-#    w.close()
+    w.close()
 
 
         
@@ -110,8 +119,9 @@ import xml.etree.ElementTree as ET
 # main
 # ----
 
-#file1 = open("RunXML.in", "r")
-#file2 = open("RunXML.tmp", "w")
+file1 = open("RunXML.in", "r")
+file2 = open("RunXML.tmp", "w")
 
-#xml_driver(file1, file2)
-xml_driver(sys.stdin, sys.stdout)
+answer = xml_driver(file1, file2)
+#answer = xml_driver(sys.stdin, sys.stdout)
+xml_print(file2, answer)
