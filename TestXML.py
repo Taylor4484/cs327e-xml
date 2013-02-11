@@ -17,6 +17,7 @@ To test the program:
 # imports
 # -------
 
+import StringIO
 import unittest
 
 from RunXML import *
@@ -31,8 +32,7 @@ from RunXML import *
     # ----
 
 def test_driver1 (self) :
-    v = xml_driver(<Taylor><Team><ACRush></ACRush><Jelly></Jelly><Cooly></Cooly></Team><JiaJia><Team><Ahyangyi></Ahyangyi><Dragon></Dragon><Cooly><Amber></Amber></Cooly></Team></JiaJia></Taylor><Taylor><Team></Team></Taylor>, w)
-    print(v)
+    v = xml_driver("<Taylor><Team><ACRush></ACRush><Jelly></Jelly><Cooly></Cooly></Team><JiaJia><Team><Ahyangyi></Ahyangyi><Dragon></Dragon><Cooly><Amber></Amber></Cooly></Team></JiaJia></Taylor><Taylor><Team></Team></Taylor>", w)
     self.assert_(v == "1\n1")
 """
     def test_driver2 (self) :
@@ -130,7 +130,8 @@ def test_driver1 (self) :
 </THU>
 <Team><Cooly></Cooly></Team>
 
-
+#tests root case
+<Taylor><Team><ACRush></ACRush><Jelly></Jelly><Cooly></Cooly></Team><JiaJia><Team><Ahyangyi></Ahyangyi><Dragon></Dragon><Cooly><Amber></Amber></Cooly></Team></JiaJia></Taylor><Taylor><Team></Team></Taylor>
         
     # -----
     # solve
@@ -167,4 +168,4 @@ def test_driver1 (self) :
 
 print ("TestXML.py")
 unittest.main()
-print ("Done.")
+print "Done.")
