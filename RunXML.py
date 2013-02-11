@@ -34,18 +34,31 @@ def xml_driver (r, w) :
     #first match
     match_parent = tree.findall(".//"+field[0])
     v = tree.find(".")
-
-    print(v)
-    print(field)
-
+    
+    print("SEARCH PARSE",field)
     if(v.tag == field[0]):
         match_parent.insert(0,v)
 
     found = []
     i = 0
+    print("TreeParse", match_parent)
+    count = 1
     for j in match_parent:
-        match_child  = match_parent[i].find(".//"+field[1])
-        if(match_child != None and match_child.tag == field[1]): found.append( match_parent[i])
+        for s2 in range(1,len(field)-1):
+            print(count)
+            print( "search", field[count])
+            match_child  = match_parent[i].find("./"+field[count])
+            print("parent", match_parent[i],"child ", match_child)
+
+            if(match_child == None):
+                print()
+            else:
+                print(field[count])
+                match_child  = match_child.find("./"+field[count+1])
+                
+                print("parent", match_child,"child ", field[count+1])
+                if(match_child != None):
+                    found.append(match_parent[i])
         i += 1
 
 
