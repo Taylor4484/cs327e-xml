@@ -71,6 +71,8 @@ def xml_driver (r, w) :
                 if(match_child != None):
                     found.append(match_parent[i])
                     print("\n Added ", match_parent[i])
+
+
         if j == lst[0]:      #tests root case
             print("J match")
             match = xml_match(1, match_parent[i], field)
@@ -180,7 +182,7 @@ def xml_tokenizer (s) :
     returns (head, sep, tail)
     """
     #what is the opening tag?
-    r = s.read()
+    r = s.readline()
     i = 0
     tag = ""
     for ch in r:
@@ -210,7 +212,7 @@ def xml_print (w,s) :
     """
     
     w.write(s)
-    w.close()
+#    w.close()
 
 
         
@@ -225,9 +227,8 @@ import xml.etree.ElementTree as ET
 # main
 # ----
 
-file1 = open("RunXML.in", "r")
-file2 = open("RunXML.tmp", "w")
+##file2 = open("RunXML.tmp", "w")
 
-answer = xml_driver(file1, file2)
-#answer = xml_driver(sys.stdin, sys.stdout)
-xml_print(file2, answer)
+#answer = xml_driver(file1, file2)
+answer = xml_driver(sys.stdin, sys.stdout)
+xml_print(sys.stdout, answer)

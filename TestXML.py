@@ -20,21 +20,57 @@ To test the program:
 import StringIO
 import unittest
 
-from RunXML import *
+from XML import xml_tokenizer, xml_driver, xml_match, xml_print
 
 # -----------
 # TestCollatz
 # -----------
 
+class Testxml (unittest.TestCase) :
+    i = 1
+    # ----
+    # xml_tokenizer
+    # ----
+"""
+    def test_tokenizer1 (self) :
+        print("TEST_TOKENIZER #1")
+        s = StringIO.StringIO("<THU><Team></Team><JiaJia><Team></Team></JiaJia></THU><JiaJia></JiaJia>")
+        tree, sep, search = xml_tokenizer(s)
+        self.assert_( tree == "<THU><Team></Team><JiaJia><Team></Team></JiaJia>" ) 
+        self.assert_( sep == "</THU>" )
+        self.assert_( search == "<JiaJia></JiaJia>" )
+
+    def test_tokenizer2 (self) :
+        s = SringIO.StringIO("<Taylor><Holly></Holly></Taylor><Holly></Holly>")
+        tree, sep, search = xml_tokenizer(s)
+        self.assert_( tree == "<Taylor><Holly></Holly>" ) 
+        self.assert_( sep == "</Taylor>" )
+        self.assert_( search == "<Holly></Holly>" )
+
+    def test_tokenizer3 (self) :
+        s = SringIO.StringIO("<THU><Team><thu></thr></Team></THU><JiaJia></JiaJia>")
+        tree, sep, search = xml_tokenizer(s)
+        self.assert_( tree == "<THU><Team><thu></thr></Team>" ) 
+        self.assert_( sep == "</THU>" )
+        self.assert_( search == "<JiaJia></JiaJia>" )
+
+
+    # ----
+    # xml_match
+    # ----
+
+    def test_match1 (self) :
+        self.assert_(1 ==1)
+        
 
     # ----
     # xml_driver
     # ----
 
-def test_driver1 (self) :
-    v = xml_driver("<Taylor><Team><ACRush></ACRush><Jelly></Jelly><Cooly></Cooly></Team><JiaJia><Team><Ahyangyi></Ahyangyi><Dragon></Dragon><Cooly><Amber></Amber></Cooly></Team></JiaJia></Taylor><Taylor><Team></Team></Taylor>", w)
-    self.assert_(v == "1\n1")
-"""
+    def test_driver1 (self) :
+        v = xml_driver("<Taylor><Team><ACRush></ACRush><Jelly></Jelly><Cooly></Cooly></Team><JiaJia><Team><Ahyangyi></Ahyangyi><Dragon></Dragon><Cooly><Amber></Amber></Cooly></Team></JiaJia></Taylor><Taylor><Team></Team></Taylor>", w)
+        self.assert_(v == "1\n1")
+
     def test_driver2 (self) :
         v = xml_driver(100, 200)
         self.assert_(v == 125)
@@ -47,15 +83,6 @@ def test_driver1 (self) :
         v = xml_driver(900, 1000)
         self.assert_(v == 174)
 
-    #reversed range
-    def test_driver5 (self) :
-        v = xml_driver(10, 1)
-        self.assert_(v == 20)
-        
-    #zero range
-    def test_driver6 (self) :
-        v = xml_driver(170, 170)
-        self.assert_(v == 11)
 
 
     # -----
@@ -82,57 +109,7 @@ def test_driver1 (self) :
         collatz_print(w, 900, 1000, 174)
         self.assert_(w.getvalue() == "900 1000 174\n")
 
-    def test_driver_1 (self) :
-        
-##Caught 3rd instance
-
-<THU>
-	<Team>
-		<ACRush></ACRush>
-		<Jelly></Jelly>
-		<Cooly></Cooly>
-	</Team>
-	<JiaJia>
-		<Team>
-			<Ahyangyi></Ahyangyi>
-			<Dragon></Dragon>
-			<Cooly><Amber></Amber></Cooly>
-		</Team>
-		<Taylor>
-			<Team>
-				<Cooly></Cooly>
-			</Team>
-		</Taylor>
-	</JiaJia>
-</THU>
-<Team><Cooly></Cooly></Team>
-
-### ignored 3rd instance
-
-<THU>
-	<Team>
-		<ACRush></ACRush>
-		<Jelly></Jelly>
-		<Cooly></Cooly>
-	</Team>
-	<JiaJia>
-		<Team>
-			<Ahyangyi></Ahyangyi>
-			<Dragon></Dragon>
-			<Cooly><Amber></Amber></Cooly>
-		</Team>
-		<Taylor>
-			<Team>
-				<Amber><Cooly></Cooly></Amber>
-			</Team>
-		</Taylor>
-	</JiaJia>
-</THU>
-<Team><Cooly></Cooly></Team>
-
-#tests root case
-<Taylor><Team><ACRush></ACRush><Jelly></Jelly><Cooly></Cooly></Team><JiaJia><Team><Ahyangyi></Ahyangyi><Dragon></Dragon><Cooly><Amber></Amber></Cooly></Team></JiaJia></Taylor><Taylor><Team></Team></Taylor>
-        
+               
     # -----
     # solve
     # -----
@@ -160,12 +137,12 @@ def test_driver1 (self) :
         w = StringIO.StringIO()
         collatz_solve(r, w)
         self.assert_(w.getvalue() == "5881 2389 238\n9169 9347 260\n193 2702 209\n8515 190 262\n")
-        
-"""
+"""        
+
 # ----
 # main
 # ----
 
 print ("TestXML.py")
 unittest.main()
-print "Done.")
+print ("Done.")
