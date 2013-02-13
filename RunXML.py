@@ -12,12 +12,13 @@ def xml_driver (r, w) :
     """
     #returns (tree,search)
     tree, sep, search = xml_tokenizer(r)
-
+    print("TREE", tree)
+    print("\n\n\n\n\n\n\n\n\n\n\ sEP",sep)
 
     #fix tree
     tree = ET.fromstring(tree+sep)
     t_iter = tree.iter()
- #   ET.dump(tree)
+    #ET.dump(tree)
     
     #creates a list, field, of elements to be searched for
     s_iter = ET.fromstring(search).iter()
@@ -30,7 +31,8 @@ def xml_driver (r, w) :
     lst = []
     for child in t_iter:
         lst.append(child)
-
+    #print(lst)
+        
     #first match
     match_parent = tree.findall(".//"+field[0])
     v = tree.find(".")
@@ -44,25 +46,22 @@ def xml_driver (r, w) :
     print("TreeParse", match_parent)
     count = 1
     for j in match_parent:
-        for s2 in range(1,len(field)-1):
-            print(count)
-            print( "search", field[count])
-            match_child  = match_parent[i].find("./"+field[count])
-            print("parent", match_parent[i],"child ", match_child)
+        if j == lst[0]:      #tests root case
+            print("J match")
+            match = xml_match(1, match_parent[i], field)
 
-            if(match_child == None):
-                print()
-            else:
-                print(field[count])
-                match_child  = match_child.find("./"+field[count+1])
-                
-                print("parent", match_child,"child ", field[count+1])
-                if(match_child != None):
-                    found.append(match_parent[i])
+        else:
+            print(match_parent[i], " check for ", field)
+            match = xml_match(1, match_parent[i], field)
+            print("\n Match is ", match)
+
+        if(match):
+            found.append(match_parent[i])
+            print("FOUND ", found)
         i += 1
 
-
-    #length of found list
+            
+   #creates a string of output, number of matches followed by open tag number for match
     length = len(found)
     answer = str(length) + "\n"
     
@@ -75,6 +74,73 @@ def xml_driver (r, w) :
             answer += "\n"
 
     return answer.strip()
+            
+"""
+
+        for s2 in field:
+            print(count)
+            print( )
+            match_child  = match_parent[i].find("./"+field[count])
+            print("searching ", field[count]," in parent ", match_parent[i], "for child ", match_child)
+            
+            if(match_child == None):
+                print("Not a match")
+                break
+            else:
+                count +=1
+                match_child  = match_child.find("./"+field[count])
+                print("searching ", field[count]," in parent ", match_child, "for child ",field[count])
+
+                if(match_child != None):
+                    found.append(match_parent[i])
+                    print("\n Added ", match_parent[i])
+        i += 1
+
+"""
+ 
+
+
+# ------------
+# xml_match
+# ------------
+
+def xml_match(i, parent, search):
+    """ if True: (search), if False: (None)"""
+    print("searched ", parent, " for ", search[i], ", ", i)
+    found = parent.find("./"+search[i])
+
+    print(found)
+    if(found == None):
+        print("No match, FALSE")
+        return False
+
+    print("Found ", found)
+    child_check = found.find("./")
+    print("child check: ",child_check)
+
+    if (search[i] ==  found.tag and len(search) > i+1 ):
+        # sCooly == tCooly and next element
+
+
+        print("RECURSIVE!!", i+1, found, search)
+        return xml_match(i+1, found, search)
+    
+    elif(child_check == None):
+            print("Match, no next, TRUE")
+            return True
+    else:
+            return False
+
+
+    """   
+    else: # if i < len(search)
+ #       for s2 in search:
+            print("searching ", parent, " for ", search[i])
+            if(found != None and i+1 < len(search) ):
+                return xml_match(i+1, search[i], search[i+1])
+            elif(found == None)
+                return False
+"""            
 
 # ------------
 # xml_tokenizer
@@ -103,6 +169,7 @@ def xml_tokenizer (s) :
     
     #partition input on opening tag
     return (r.partition(tag))
+
 
 
 # -------------
