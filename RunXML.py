@@ -17,7 +17,7 @@ def xml_driver (r, w) :
     #fix tree
     tree = ET.fromstring(tree+sep)
     t_iter = tree.iter()
- #   ET.dump(tree)
+  #  ET.dump(tree)
     
     #creates a list, field, of elements to be searched for
     s_iter = ET.fromstring(search).iter()
@@ -30,7 +30,6 @@ def xml_driver (r, w) :
     lst = []
     for child in t_iter:
         lst.append(child)
-
     #first match
     match_parent = tree.findall(".//"+field[0])
     v = tree.find(".")
@@ -40,27 +39,41 @@ def xml_driver (r, w) :
         match_parent.insert(0,v)
 
     found = []
-    i = 0
     print("TreeParse", match_parent)
-    count = 1
+    i = 0
     for j in match_parent:
-        for s2 in range(1,len(field)-1):
-            print(count)
-            print( "search", field[count])
+
+        if j == match_parent:
+            print("J match")
             match_child  = match_parent[i].find("./"+field[count])
-            print("parent", match_parent[i],"child ", match_child)
+
+            if(match_child != None):
+                found.append(match_parent[i])
+
+                       
+            break
+        count = 0
+        
+        for s2 in field:
+            
+            print("\ncount =", count)
+            print( "searching ", match_parent[i], "for ", field[count+1])
+            match_child  = match_parent[i].find("./"+field[count+1])
+            print("found child ", match_child)
+            count +=1                          
 
             if(match_child == None):
-                print()
+                print("Not a Match")
+                break
             else:
-                print(field[count])
-                match_child  = match_child.find("./"+field[count+1])
                 
-                print("parent", match_child,"child ", field[count+1])
+                match_parent[i] = match_child
+                
                 if(match_child != None):
                     found.append(match_parent[i])
+                    print("Match Found, Added ", match_parent[i])
+                    break
         i += 1
-
 
     #length of found list
     length = len(found)
@@ -70,7 +83,7 @@ def xml_driver (r, w) :
     a = 0
     for x in found:
 
-        answer += str((lst.index(x)+1))
+        answer += str(int((lst.index(x)))-len(field))
         if a != length:
             answer += "\n"
 
