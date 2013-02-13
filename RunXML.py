@@ -17,7 +17,7 @@ def xml_driver (r, w) :
     #fix tree
     tree = ET.fromstring(tree+sep)
     t_iter = tree.iter()
- #   ET.dump(tree)
+    #ET.dump(tree)
     
     #creates a list, field, of elements to be searched for
     s_iter = ET.fromstring(search).iter()
@@ -30,7 +30,8 @@ def xml_driver (r, w) :
     lst = []
     for child in t_iter:
         lst.append(child)
-
+    #print(lst)
+        
     #first match
     match_parent = tree.findall(".//"+field[0])
     v = tree.find(".")
@@ -44,21 +45,31 @@ def xml_driver (r, w) :
     print("TreeParse", match_parent)
     count = 1
     for j in match_parent:
-        for s2 in range(1,len(field)-1):
-            print(count)
-            print( "search", field[count])
+        if j == lst[0]:
+            print("J match")
             match_child  = match_parent[i].find("./"+field[count])
-            print("parent", match_parent[i],"child ", match_child)
 
+            if(match_child != None):
+                found.append(match_parent[i])
+
+
+        for s2 in field:
+            print(count)
+            print( )
+            match_child  = match_parent[i].find("./"+field[count])
+            print("searching ", field[count]," in parent ", match_parent[i], "for child ", match_child)
+            
             if(match_child == None):
-                print()
+                print("Not a match")
+                break
             else:
-                print(field[count])
-                match_child  = match_child.find("./"+field[count+1])
-                
-                print("parent", match_child,"child ", field[count+1])
+                count +=1
+                match_child  = match_child.find("./"+field[count])
+                print("searching ", field[count]," in parent ", match_child, "for child ",field[count])
+
                 if(match_child != None):
                     found.append(match_parent[i])
+                    print("\n Added ", match_parent[i])
         i += 1
 
 

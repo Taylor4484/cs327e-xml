@@ -8,8 +8,7 @@
 		<Team>
 			<Ahyangyi></Ahyangyi>
 			<Dragon></Dragon>
-			<Cooly>
-                            <Amber></Amber></Cooly>
+			<Cooly><Amber></Amber></Cooly>
 		</Team>
 		<Taylor>
 			<Team>
@@ -18,4 +17,4 @@
 		</Taylor>
 	</JiaJia>
 </THU>
-<Team><Amber><Cooly></Cooly></Amber></Team>
+<Team><Cooly></Cooly></Team>
