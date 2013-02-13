@@ -10,11 +10,14 @@
 			<Dragon></Dragon>
 			<Cooly><Amber></Amber></Cooly>
 		</Team>
+<<<<<<< HEAD
 		<Taylor>
 			<Team>
 				<Amber><Cooly></Cooly></Amber>
 			</Team>
 		</Taylor>
+=======
+>>>>>>> function_idea
 	</JiaJia>
 </THU>
 <Team><Cooly></Cooly></Team>
