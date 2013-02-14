@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 
 # -------------------------------
-# projects/xml/Testxml.py
+# projects/xml/TestXML.py
 # Copyright (C) 2013
-# Glenn P. Downing
 # -------------------------------
 
 """
 To test the program:
-    % python Testxml.py >& Testxml.py.out
-    % chmod ugo+x Testxml.py
-    % Testxml.py >& Testxml.py.out
+    % python TestCollatz.py >& TestCollatz.py.out
+    % chmod ugo+x TestCollatz.py
+    % TestCollatz.py >& TestCollatz.py.out
 """
 
 # -------
@@ -23,7 +22,7 @@ import unittest
 from XML import xml_tokenizer, xml_driver, xml_match, xml_print
 
 # -----------
-# Testxml
+# TestCollatz
 # -----------
 
 class TestXML (unittest.TestCase) :
@@ -61,7 +60,7 @@ class TestXML (unittest.TestCase) :
 
     #SETUP INPUT FOR TEST
     
-    s = StringIO.StringIO("<THU><Team></Team><JiaJia><Team><Taylor></Taylor></Team></JiaJia><Team></Team></THU><Team><Taylor></Taylor></Team>")
+    s = StringIO.StringIO("<THU><Team></Team><JiaJia><Team></Team></JiaJia></THU><JiaJia></JiaJia>")
     tree, sep, search = xml_tokenizer(s)
     #fix tree
     tree = ET.fromstring(tree+sep)
@@ -84,15 +83,8 @@ class TestXML (unittest.TestCase) :
 
     def test_match1 (self) :
          test = xml_match(1, match_parent[0], field)
-         assert_(test == None)
-
-    def test_match2 (self) :
-         test = xml_match(1, match_parent[1], field)
          assert_(test == True)
-
-    def test_match3 (self) :
-         test = xml_match(1, match_parent[2], field)
-         assert_(test == None)
+        
 
     # ----
     # xml_driver
@@ -103,12 +95,16 @@ class TestXML (unittest.TestCase) :
         self.assert_(v == "1\n1")
 
     def test_driver2 (self) :
-        v = xml_driver("<Team><Cooly></Cooly></Team><Team><Cooly></Cooly></Team>")
-        self.assert_(v == "1\n1")
+        v = xml_driver(100, 200)
+        self.assert_(v == 125)
 
     def test_driver3 (self) :
-        v = xml_driver("<Holly><Cats><Leopards><coffee><Tigers></Tigers></coffee></Leopards><Ocelots></Ocelots><Bobcats></Bobcats></Cats><Leopards><coffee></coffee><Tigers></Tigers></Leopards></Holly>")
-        self.assert_(v == "1\n3")
+        v = xml_driver(201, 210)
+        self.assert_(v == 89)
+
+    def test_driver4 (self) :
+        v = xml_driver(900, 1000)
+        self.assert_(v == 174)
 
 
 
@@ -118,22 +114,53 @@ class TestXML (unittest.TestCase) :
 
     def test_print_1 (self) :
         w = StringIO.StringIO()
-        answer = "1\n1"
-        xml_print(w, answer)
-        self.assert_(w.getvalue() == "1\n1")
+        collatz_print(w, 1, 10, 20)
+        self.assert_(w.getvalue() == "1 10 20\n")
 
     def test_print_2 (self) :
         w = StringIO.StringIO()
-        answer = "1\n3"
-        xml_print(w, answer)
-        self.assert_(w.getvalue() == "1\n3")
+        collatz_print(w, 100, 200, 125)
+        self.assert_(w.getvalue() == "100 200 125\n")
 
     def test_print_3 (self) :
         w = StringIO.StringIO()
-        answer = "0"
-        xml_print(w, answer)
-        self.assert_(w.getvalue() == "0")
+        collatz_print(w, 201, 210, 89)
+        self.assert_(w.getvalue() == "201 210 89\n")
 
+    def test_print_4 (self) :
+        w = StringIO.StringIO()
+        collatz_print(w, 900, 1000, 174)
+        self.assert_(w.getvalue() == "900 1000 174\n")
+
+               
+    # -----
+    # solve
+    # -----
+
+    def test_solve_1 (self) :
+        r = StringIO.StringIO("1 10\n100 200\n201 210\n900 1000\n")
+        w = StringIO.StringIO()
+        collatz_solve(r, w)
+        self.assert_(w.getvalue() == "1 10 20\n100 200 125\n201 210 89\n900 1000 174\n")
+
+    def test_solve_2 (self) :
+        r = StringIO.StringIO("1660 5068\n1362 5153\n6636 3965\n3226 5611\n")
+        w = StringIO.StringIO()
+        collatz_solve(r, w)
+        self.assert_(w.getvalue() == "1660 5068 238\n1362 5153 238\n6636 3965 262\n3226 5611 238\n")
+
+    def test_solve_3 (self) :
+        r = StringIO.StringIO("3842 1200\n3168 2892\n3419 6158\n87 6318\n")
+        w = StringIO.StringIO()
+        collatz_solve(r, w)
+        self.assert_(w.getvalue() == "3842 1200 238\n3168 2892 217\n3419 6158 238\n87 6318 262\n")
+
+    def test_solve_4 (self) :
+        r = StringIO.StringIO("5881 2389\n9169 9347\n193 2702\n8515 190\n")
+        w = StringIO.StringIO()
+        collatz_solve(r, w)
+        self.assert_(w.getvalue() == "5881 2389 238\n9169 9347 260\n193 2702 209\n8515 190 262\n")
+       
 
 # ----
 # main
