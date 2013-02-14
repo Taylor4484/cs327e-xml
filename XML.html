@@ -1,0 +1,59 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module RunXML</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>RunXML</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/taylormccaslin/Desktop/Spring 2013/CS327E/cs327e-xml/RunXML.py">/Users/taylormccaslin/Desktop/Spring 2013/CS327E/cs327e-xml/RunXML.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;------------<br>
+#&nbsp;xml_driver<br>
+#&nbsp;------------</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="xml.etree.ElementTree.html">xml.etree.ElementTree</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-xml_driver"><strong>xml_driver</strong></a>(r, w)</dt><dd><tt>takes&nbsp;in&nbsp;(head,&nbsp;sep,&nbsp;tail)<br>
+searches&nbsp;ElementTree&nbsp;for&nbsp;SearchQuery<br>
+Calls&nbsp;printer&nbsp;with&nbsp;answer&nbsp;string<br>
+r&nbsp;is&nbsp;a&nbsp;reader<br>
+w&nbsp;is&nbsp;a&nbsp;writer</tt></dd></dl>
+ <dl><dt><a name="-xml_match"><strong>xml_match</strong></a>(i, parent, search)</dt><dd><tt>Takes&nbsp;in&nbsp;index&nbsp;of&nbsp;next&nbsp;search&nbsp;tag,&nbsp;i<br>
+Takes&nbsp;in&nbsp;memory&nbsp;address&nbsp;of&nbsp;ET&nbsp;tag&nbsp;being&nbsp;searched,&nbsp;parent<br>
+Takes&nbsp;in&nbsp;ET&nbsp;list&nbsp;of&nbsp;search&nbsp;terms,&nbsp;search<br>
+&nbsp;<br>
+if&nbsp;match&nbsp;found,&nbsp;return&nbsp;True<br>
+if&nbsp;match&nbsp;not&nbsp;found,&nbsp;return&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-xml_print"><strong>xml_print</strong></a>(w, s)</dt><dd><tt>Output&nbsp;all&nbsp;the&nbsp;occurrences&nbsp;of&nbsp;pattern&nbsp;in&nbsp;a&nbsp;text&nbsp;of&nbsp;XML&nbsp;documents.<br>
+w&nbsp;is&nbsp;a&nbsp;writer<br>
+s&nbsp;is&nbsp;the&nbsp;answer&nbsp;string</tt></dd></dl>
+ <dl><dt><a name="-xml_tokenizer"><strong>xml_tokenizer</strong></a>(s)</dt><dd><tt>splits&nbsp;input&nbsp;into&nbsp;two&nbsp;vaild&nbsp;xml&nbsp;trees<br>
+&nbsp;&nbsp;&nbsp;-ElementTree<br>
+&nbsp;&nbsp;&nbsp;-SearchQuery<br>
+&nbsp;<br>
+returns&nbsp;(head,&nbsp;sep,&nbsp;tail)</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>file1</strong> = &lt;open file 'RunXML.in', mode 'r'&gt;<br>
+<strong>file2</strong> = &lt;closed file 'RunXML.tmp', mode 'w'&gt;</td></tr></table>
+</body></html>

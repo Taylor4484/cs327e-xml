@@ -1,0 +1,101 @@
+commit af0380b44d6708144530d4db372b218d812d9c75
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Wed Feb 13 16:43:47 2013 -0600
+
+    New Base Test
+
+commit d2f9fa777c9f93d123100ad8924a317040f1e902
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Tue Feb 12 22:05:55 2013 -0600
+
+    Completed Search Function, working for all text cases
+    
+    Known bug : should partition based on index, not seperator
+
+commit 2579fd2b669c1a79ddc39276d0877f264e865fc8
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Sun Feb 10 18:14:06 2013 -0600
+
+    Updated TestXML with test cases thus far
+    
+    Still don't know how to use this file.
+
+commit a75a9d6c876dc1835dd09b9170787bfa73733f96
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Sun Feb 10 18:01:41 2013 -0600
+
+    Passes all tests thus far except root search case
+
+commit 07e494d16e73079870e26dd8cf25c8dd17279d0d
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Sun Feb 10 16:02:30 2013 -0600
+
+    Passes Root Case, Passes 3 levels down
+    
+    Fails Matching search case where not subelement is not immediate child.
+
+commit f4891170b45bfc92af8242c5d8849b4783b3b365
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Sun Feb 10 15:41:44 2013 -0600
+
+    Root case searched, compared to memory address
+
+commit 5f6f175afd3f52532f7fb93010d88cfe608db87c
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Sun Feb 10 14:05:46 2013 -0600
+
+    Extended to allow search to encompass root
+
+commit a26ebfd92169585db9ad6ec1a6da41ddbe02c7cf
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Sun Feb 10 12:12:05 2013 -0600
+
+    Working Implementation of Sphere Test Case
+    
+    Sphere rejected due to time limit exceed
+
+commit c01587af2f7b242e4bf094f904d88958e6756f14
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Sun Feb 10 10:46:56 2013 -0600
+
+    Updated README
+    
+    Read in individual, spedified file <name1> and output to specified file
+    of <name2>
+
+commit 58a20de5b3337d9e8e82e0793048835f43882184
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Fri Feb 8 19:34:04 2013 -0600
+
+    RunXML included tag index list
+
+commit e116e025fd1e7df46aa5bc59bbdb3ef81c9195aa
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Fri Feb 8 19:07:31 2013 -0600
+
+    Successfully split input file into searchTree and searchString
+    
+    Defined in xml_driver
+
+commit c0eb4ac8761603521c0297777a00c1fa62a127ae
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Fri Feb 8 18:47:58 2013 -0600
+
+    Testing Various Ideas
+    
+    Created expected input/output
+    Testing various python code snipits (stringslice,test)
+
+commit 6d30ecc870afdd5cfc7fd5f28bc7278b310ddc0e
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Wed Feb 6 21:30:59 2013 -0600
+
+    Initial file structure setup
+    
+    including all required files and provided makefile
+
+commit 3f65a73be82af2faf167ae72effc15d45b7a29a0
+Author: Taylor McCaslin <Taylor4484@gmail.com>
+Date:   Mon Feb 4 13:41:03 2013 -0800
+
+    Initial commit
